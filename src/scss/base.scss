@@ -1,0 +1,94 @@
+@import "variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font: 150% "Open Sans", sans-serif;
+  color: $primary-text;
+  line-height: 2.3rem;
+  background-color: $secondary-text;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+h2 {
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 2rem 0 3rem;
+  max-width: 62rem;
+}
+
+h3 {
+  display: block;
+  font-size: 1.6rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-size: 120%;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.3rem;
+}
+
+.container {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 11rem 0;
+}
+
+.btn {
+  display: block;
+  padding: 1.7rem 3.3rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+  border-radius: 0.2rem;
+  transition: 0.3s;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  a {
+    text-transform: uppercase;
+    color: $secondary-text;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.12em;
+  }
+}
+
