@@ -9,27 +9,34 @@
   background-color: transparent;
   transition: 0.4s;
   z-index: 10;
+
   div:nth-child(1) {
     align-items: center;
   }
 }
 
-.logo p{
-    color: $secondary-text;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 2.2rem;
-    line-height: 1.2;
+.logo p {
+  color: $secondary-text;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  @include isMobile {
+    color: $primary-text;
+    font-size: 1.45rem;
+  }
 }
 
-.is-scroll .header  {
+.is-scroll .header {
   padding: 2rem 0;
   width: 100%;
   background-color: $secondary-text;
-  box-shadow: 0 0.5rem 3.8rem 0.1rem rgba(0, 0, 0, 0.07);
+  box-shadow: 0 .5rem 3.8rem .1rem rgba(0, 0, 0, 0.07);
+
   li > a {
     color: $primary-text;
   }
+
   p {
     color: $primary-color;
   }
@@ -39,6 +46,7 @@
   max-width: 62rem;
   gap: 1.5rem;
   width: 100%;
+
   a {
     font-size: 1.6rem;
     font-weight: 600;
@@ -48,17 +56,18 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: $secondary-text;
-    &:hover{
+
+    &:hover {
       color: $secondary-color;
     }
   }
 }
 
-
 /* responsive menu */
 .burger-menu-container {
   display: none;
 }
+
 .burger-menu {
   cursor: pointer;
 }
@@ -69,7 +78,8 @@
   justify-content: space-between;
   width: 3rem;
   height: 2.5rem;
- span {
+
+  span {
     display: block;
     width: 100%;
     height: .35rem;
@@ -77,17 +87,18 @@
     transition: all 0.3s ease-in-out;
   }
 
- span:nth-child(1),span:nth-child(3) {
+  span:nth-child(1), span:nth-child(3) {
     transform-origin: left;
   }
 
- span:nth-child(2) {
+  span:nth-child(2) {
     opacity: 1;
   }
 }
 
 .burger-menu-container {
   flex-direction: row-reverse;
+
   svg {
     fill: #333;
     height: 2.5rem;
@@ -95,82 +106,85 @@
   }
 }
 
-@media (max-width: $width-mob) {
-  .header.is-scroll, .logo-container.active {
-    display: none;
-  }
-  .logo-container {
-    display: block;
+
+@include isMobile {
+  .header-menu {
+    width: 100%;
+    position: fixed;
+    min-height: 100dvh;
+    top:0;
+    left:0;
+    transform: translateX(201%);
+    padding: 2rem 2rem;
+    transition: transform .6s;
+    flex-direction: column;
+    background: #fff;
+    gap:3rem;
+    align-items: center;
+    justify-content: center;
+    &::before{
+      content:'';
+      width:100%;
+      height:100%;
+      position: absolute;
+      right:100%;
+      top:0;
+      background: orange;
+    }
+    a {
+      font-size: 2rem;
+      color: $primary-text;
+    }
+
   }
 
-  .burger-icon {
-    width: 3.2rem;
-    height: 2.4rem;
-    span {
-      height: .35rem;
+  body.menu-active{
+    .header-menu{
+      transform: translateX(3%);
+    }
+    .burger-menu .burger-icon span{
+      &:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      &:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg);
+      }
     }
   }
 
-  .header {
-    background-color: #fff;
-    padding: 1rem 0;
-  }
 
   .header-container {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
+  }
+  .logo-container {
+    z-index:99;
+    position: relative;
   }
 
-  .header-menu {
-    width: 100%;
-    transform: translateX(101%);
-    padding: 2rem 2rem;
-    display: none;
-    opacity: 0;
-    transition: transform .4s;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4rem;
-    &.active {
-      height: 100vh;
-    display: block;
-      opacity: 1;
-      transform: translateX(0);
-    }
-    a{
-      font-size: 2.4rem;
-      color: $primary-text;
-    }
-    li {
-      margin: 2rem 0;
+  .burger-icon {
+    width: 2.8rem;
+    height: 2rem;
+
+    span {
+      height: .25rem;
     }
   }
 
+  .header, .is-scroll .header {
+    background-color: #fff;
+    padding: 1.5rem 0;
+  }
 
-  .burger-menu.active .burger-icon span:nth-child(1) {
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
-}
-
-.burger-menu.active .burger-icon span:nth-child(2) {
-    opacity: 0;
-}
-
-.burger-menu.active .burger-icon span:nth-child(3) {
-    bottom: 50%;
-    transform: translateY(50%) rotate(-45deg);
-}
-  
   .burger-menu-container {
     display: flex;
+    position: relative;
+    z-index: 999;
   }
 
-  .logo p{
-      color: $primary-text;
-      font-size: 1.8rem;
-      width: 100%;
-      line-height: 1.2;
-  }
-  
 }

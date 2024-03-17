@@ -2,17 +2,12 @@ const gulp = require('gulp');
 
 // HTML
 const fileInclude = require('gulp-file-include');
-const htmlclean = require('gulp-htmlclean');
-const webpHTML = require('gulp-webp-html');
+const htmlClean = require('gulp-htmlclean');
 
 // SASS
 const sass = require('gulp-sass')(require('sass'));
 const sassGlob = require('gulp-sass-glob');
-const autoprefixer = require('gulp-autoprefixer');
-const csso = require('gulp-csso');
-const webpCss = require('gulp-webp-css');
 
-const server = require('gulp-server-livereload');
 const clean = require('gulp-clean');
 const fs = require('fs');
 const sourceMaps = require('gulp-sourcemaps');
@@ -26,6 +21,8 @@ const changed = require('gulp-changed');
 // Images
 const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
+const cssnano = require("gulp-cssnano");
+const gulpIf = require('gulp-if');
 
 
 gulp.task('clean:build', function (done) {
@@ -52,14 +49,15 @@ const plumberNotify = (title) => {
 	};
 };
 
+
 gulp.task('html:build', function () {
 	return gulp
-		.src(['./src/html/**/*.html', '!./src/html/blocks/*.html'])
+		.src(['./src/html/**/*.html', '!./src/html/blocks/*.html', '!./src/html/blocks/**/*.html', '!./src/html/pages/**/*.html'])
 		.pipe(changed('./build/'))
 		.pipe(plumber(plumberNotify('HTML')))
 		.pipe(fileInclude(fileIncludeSetting))
-		.pipe(webpHTML())
-		.pipe(htmlclean())
+		//.pipe(webpHTML())
+		.pipe(htmlClean())
 		.pipe(gulp.dest('./build/'));
 });
 
@@ -72,6 +70,7 @@ gulp.task('sass:build', function () {
 		.pipe(sassGlob())
 		.pipe(sass())
 		.pipe(sourceMaps.write())
+		.pipe(gulpIf('*.css', cssnano()))
 		.pipe(gulp.dest('./build/css/'));
 });
 
@@ -94,6 +93,15 @@ gulp.task('fonts:build', function () {
 		.pipe(gulp.dest('./build/fonts/'));
 });
 
+
+
+gulp.task('pwa:build', function () {
+	return gulp
+		.src(['./src/*.png', './src/*.ico', './src/*.webmanifest'])
+		.pipe(changed('./build/'))
+		.pipe(gulp.dest('./build/'))
+});
+
 gulp.task('files:build', function () {
 	return gulp
 		.src('./src/files/**/*')
@@ -111,7 +119,3 @@ gulp.task('js:build', function () {
 		.pipe(gulp.dest('./build/js/'));
 });
 
-
-gulp.task('server:build', function () {
-	return gulp.src('./build/');
-});

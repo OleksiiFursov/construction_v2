@@ -4,3 +4,13 @@ $primary-color: #6e6e6e;
 $secondary-color: #fcae1e;
 
 $width-mob: 980px;
+@mixin isMobile {
+  @media (max-width: $width-mob) {
+    @content;
+  }
+}
+@mixin isDesktop {
+  @media (min-width: $width-mob) {
+    @content;
+  }
+}

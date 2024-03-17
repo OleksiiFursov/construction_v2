@@ -9,9 +9,9 @@ const sourceMaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const webpack = require('webpack-stream');
-const babel = require('gulp-babel');
-const imagemin = require('gulp-imagemin');
 const changed = require('gulp-changed');
+const ip = require('ip');
+
 
 gulp.task('clean:dev', function (done) {
 	if (fs.existsSync('./build/')) {
@@ -66,7 +66,7 @@ gulp.task('images:dev', function () {
 	return gulp
 		.src('./src/img/**/*')
 		.pipe(changed('./build/img/'))
-		// .pipe(imagemin({ verbose: true }))
+
 		.pipe(gulp.dest('./build/img/'));
 });
 
@@ -94,14 +94,22 @@ gulp.task('js:dev', function () {
 		.pipe(gulp.dest('./build/js/'));
 });
 
-const serverOptions = {
-	livereload: true,
-	open: true,
-	port: 1234
-};
+gulp.task('pwa:dev', function () {
+
+	return gulp
+		.src(['./src/*.png', './src/*.ico', './src/*.webmanifest'])
+		.pipe(changed('./build/'))
+		.pipe(gulp.dest('./build/'))
+});
 
 gulp.task('server:dev', function () {
-	return gulp.src('./build/').pipe(server(serverOptions));
+	return gulp.src('./build/').pipe(server({
+		host: ip.address(),
+		livereload: true,
+		https: true,
+		open: true,
+		port: 8080,
+	}));
 });
 
 gulp.task('watch:dev', function () {

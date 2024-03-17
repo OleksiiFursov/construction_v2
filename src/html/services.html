@@ -8,8 +8,11 @@
     <link rel="icon" type="image/x-icon" href="/img/road.ico">
   </head>
   <body>
-    @@include('blocks/header.html')
-    <main class="container">
+    <div class="page-top"></div>
+    <div class="header is-scroll">
+      @@include('blocks/header.html')
+    </div>
+    <main class="container section">
       <section class="pager-sec">
         <div>
           <ul class="pager-info flex">
@@ -21,7 +24,7 @@
       </section>
       <div class="main-content">
         <section class="services-posts-section section">
-          <div class="services-tabs flex">
+          <div class="services-tabs">
             <div class="flex-column services-names">
               <div class="tab-btn service-name">
                 <label for="choose_7">Ремонт доріг</label>

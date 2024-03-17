@@ -22,12 +22,10 @@ const headerNav = document.querySelector(".header-menu");
 const menuLinks = document.querySelectorAll(".menu-link");
 const burgerMenu = document.querySelector(".burger-menu");
 const logo = document.querySelector(".logo-container");
-
+const body = document.body;
 
 burgerMenu.addEventListener("click", () => {
-    headerNav.classList.toggle("active");
-    burgerMenu.classList.toggle('active');
-    logo.classList.toggle('active');
+    body.classList.toggle("menu-active");
 });
 
 menuLinks.forEach((link) => {
@@ -146,7 +144,6 @@ document.addEventListener('click', e => {
     const tabsRoot = tabsNav.closest('.fx-tabs');
     const tabsContents = tabsRoot.querySelector('.tab-contents');
 
-
     // removed old active
     const activeNavElement = tabsRoot.querySelector('.tabs-nav li.active');
     if(activeNavElement){
@@ -156,9 +153,40 @@ document.addEventListener('click', e => {
     const index = getIndexElement(el);
     tabsContents.children[0].style.marginLeft = -(index*100)+'%';
     tabsNav.children[index].classList.add('active');
-
-
-
-
-
 });
+
+// reviews 
+document.addEventListener("DOMContentLoaded", function () {
+    const reviews = document.querySelectorAll('.review');
+    let index = 0;
+
+    function showNextReview() {
+        reviews.forEach(review => review.classList.remove('active'));
+        reviews[index].classList.add('active');
+        index = (index + 1) % reviews.length;
+    }
+
+    const interval = setInterval(showNextReview, 4000);
+});
+
+
+// modal
+const modal = document.querySelector(".contact-modal");
+const btnModal = document.querySelector(".open-modal-btn");
+const spanModal = document.querySelector(".close");
+
+btnModal.addEventListener("click", () => {
+    modal.classList.add('is-open');
+});
+
+spanModal.addEventListener("click", () => {
+    modal.classList.remove('is-open');
+});
+
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+    modal.classList.remove('is-open');
+    }
+  }
+
