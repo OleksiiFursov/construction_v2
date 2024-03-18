@@ -7,7 +7,7 @@
   left: 0;
   width: 100%;
   background-color: transparent;
-  transition: 0.4s;
+  transition: .4s;
   z-index: 10;
 
   div:nth-child(1) {
@@ -44,12 +44,12 @@
 
 .header-menu {
   max-width: 62rem;
-  gap: 1.5rem;
+  gap: 2.5rem;
   width: 100%;
 
   a {
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-weight: 500;
     font-family: "Open Sans", sans-serif;
     line-height: 1.2;
     text-align: center;

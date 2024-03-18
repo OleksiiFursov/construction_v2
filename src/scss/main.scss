@@ -2,7 +2,6 @@
 @import "base";
 @import "header";
 
-
 .banner-wrapper {
   background: linear-gradient(
                   90deg,
@@ -24,11 +23,15 @@
   }
 }
 
-
 .banner-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+
+  .flex {
+    display: flex;
+    align-items: flex-end;
+  }
 }
 
 .banner-title {
@@ -43,17 +46,20 @@
 
 .banner-subtitle {
   font-size: 2.4rem;
+  max-width: 40rem;
   font-weight: 400;
-  line-height: 2;
   letter-spacing: 0;
   color: $secondary-color;
-  margin-bottom: 1rem;
 }
 
 .banner-btns {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
+
+  .btn:hover {
+    box-shadow: inset 0 0 10rem rgba(0, 0, 0, .25);
+  }
 }
 
 .banner-btn {
@@ -64,15 +70,12 @@
   background-color: $secondary-color;
 }
 
-.banner-btn, .banner-btn2 {
+.banner-btn,
+.banner-btn2 {
   color: #fff;
   text-transform: uppercase;
   font-size: 1.6rem;
   font-weight: 600;
-}
-
-.banner-btn:hover {
-  background-color: $secondary-color;
 }
 
 
@@ -184,37 +187,35 @@
     font-weight: 600;
     cursor: pointer;
     display: block;
-    padding: .5rem 3.4rem;
+    padding: 0.5rem 3.4rem;
     line-height: 2.4;
-    transition: .3s;
-    border-bottom: .2rem solid $primary-text;
+    transition: 0.3s;
+    border-bottom: 0.2rem solid $primary-color;
 
-    &:hover, &.active {
-      border-bottom: .2rem solid $secondary-color;
+    &.active {
+      border-bottom: 0.2rem solid $secondary-color;
       color: #fff;
       background-color: $secondary-color;
-      border-radius: 1rem 1rem 0 0;
+      border-radius: .4rem .4rem 0 0;
     }
 
   }
 
   @include isMobile {
-
     ul {
       overflow-x: scroll;
       max-width: 100%;
       scrollbar-width: none;
-      &::-webkit-scrollbar{
+
+      &::-webkit-scrollbar {
         display: none;
       }
     }
     li {
-      padding: .5rem 2rem;
+      padding: 0.5rem 2rem;
       min-width: 10rem;
     }
-
   }
-
 }
 
 .tab-contents {
@@ -225,16 +226,16 @@
 }
 
 .tab-content {
-  min-width: 100%;
-  transition: .3s;
+  min-width: calc(100% + .4px);
+  transition: 0.3s;
 }
 
 .tabs-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 1rem 2.5rem;
-  grid-template-areas: 
+  gap: 2rem 2.5rem;
+  grid-template-areas:
     "tabs-area1 tabs-area3"
     "tabs-area2 tabs-area4";
 }
@@ -274,9 +275,10 @@
 }
 
 .experience-container {
-  h2{
-    margin-top:0;
+  h2 {
+    margin-top: 0;
   }
+
   margin: 0 auto;
 }
 
@@ -322,9 +324,10 @@
   border: 0.1rem solid #6e777d27;
   border-radius: 0.2rem;
 
-  @include isMobile{
+  @include isMobile {
     flex-direction: column;
   }
+
   hr {
     border: 0.01rem solid #6e777d27;
     margin: 1rem 0 0.5rem;
@@ -336,7 +339,7 @@
   height: 100%;
   background: #666 center/cover;
   border-radius: 0.2rem;
-  @include isMobile{
+  @include isMobile {
     width: 100%;
     height: 14rem;
   }
@@ -362,7 +365,7 @@
   text-transform: capitalize;
   display: block;
   text-align: right;
-  margin-top: auto
+  margin-top: auto;
 }
 
 /* choose us section */
@@ -452,7 +455,6 @@
   img {
     display: block;
     max-width: 70rem;
-
   }
 }
 
@@ -557,20 +559,14 @@
 }
 
 .review:nth-child(1) {
-  left: 0;
-  top: 0;
   z-index: 1;
 }
 
 .review:nth-child(2) {
-  left: 5rem;
-  top: 5rem;
   z-index: 2;
 }
 
 .review:nth-child(3) {
-  left: 10rem;
-  top: 10rem;
   z-index: 3;
 }
 
@@ -599,6 +595,7 @@
   width: 19.8rem;
   border-radius: 50%;
   background: url("../img/blank.png") no-repeat center/cover;
+  box-shadow: inset -.1rem -.1rem 8.1rem -3.2rem rgba(161, 161, 161, 0.3);
 }
 
 .quote-svg {
@@ -614,7 +611,11 @@
 /* footer */
 .footer {
   background: url("../img/road-bg.jpg") center/cover no-repeat;
-  padding: 7rem 0 0;
+
+  & > .container {
+    padding: 7rem 0;
+  }
+
 }
 
 .footer-left {
@@ -627,9 +628,12 @@
     margin-top: 0;
   }
 
-  h4,
-  p {
+  h4{
     color: $secondary-text;
+  }
+
+  a, p {
+    color: $primary-color;
   }
 }
 
@@ -637,7 +641,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: .5rem 1rem;
+  gap: 0.5rem 1rem;
   grid-auto-flow: row;
   grid-template-areas:
     "area1 area2 area3"
@@ -674,10 +678,6 @@
 }
 
 
-.address {
-  max-width: 25rem;
-}
-
 .footer-right {
   max-width: 60rem;
   width: 100%;
@@ -699,13 +699,12 @@
 
 .copyright {
   margin-top: 1rem;
-  border-top: .1rem solid #333;
+  border-top: 0.1rem solid #333;
   text-align: center;
-  padding: 1rem 0;
-
+  padding: 1.5rem 0;
   p {
     color: #666;
-    font-size: medium;
+    font-size: 1.4rem;
   }
 }
 
@@ -730,20 +729,23 @@
   margin: 10% auto;
   padding: 2.5rem;
   width: 80%;
-  box-shadow: .8rem .7rem 1.1rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0.8rem 0.7rem 1.1rem rgba(0, 0, 0, 0.2);
 
   textarea {
     resize: none;
     height: 15rem;
   }
 
-  .modal-name, .modal-email {
+  .modal-name,
+  .modal-email {
     height: 2.5rem;
   }
 
-  .modal-name, .modal-email, textarea {
+  .modal-name,
+  .modal-email,
+  textarea {
     outline: none;
-    padding: .5rem;
+    padding: 0.5rem;
     font-size: 1.4rem;
     color: #666;
   }
@@ -827,10 +829,9 @@
 .services-photos {
   flex-wrap: wrap;
   gap: 1rem;
-
   img {
     display: block;
-    max-width: 31rem;
+    max-width: 34rem;
     height: 24rem;
   }
 }
@@ -846,7 +847,7 @@
 
 .thumb {
   max-height: 24rem;
-  border: solid .6rem white;
+  border: solid 0.6rem white;
 }
 
 .lightbox {
@@ -864,8 +865,12 @@
 .lightbox img {
   max-width: 90%;
   max-height: 80%;
-  margin-top: 2%;
   opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
 .lightbox:target {
@@ -873,7 +878,6 @@
   width: 100%;
   height: 100%;
   opacity: 1;
-
 }
 
 .lightbox:target img {
@@ -884,9 +888,9 @@
 .light-btn {
   color: #fafafa;
   background-color: #333;
-  border: solid .3rem white;
-  padding: .5rem 1.5rem;
-  border-radius: .1rem;
+  border: solid 0.3rem white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.1rem;
   text-decoration: none;
   cursor: pointer;
   vertical-align: middle;
@@ -913,9 +917,9 @@
   top: 2%;
   color: #fafafa;
   background-color: $secondary-color;
-  border: solid .3rem white;
-  padding: .7rem 1.2rem;
-  border-radius: .1rem;
+  border: solid 0.3rem white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.1rem;
   text-decoration: none;
 }
 
@@ -933,12 +937,6 @@
   gap: 3rem;
 }
 
-@media (min-width: 1921px) {
-  html {
-    font-size: 0.58vw;
-  }
-}
-
 
 @media (max-width: 1640px) {
   .service-card {
@@ -947,11 +945,13 @@
 }
 
 @media (min-width: $width-mob) {
+  html {
+    font-size: 0.55vw;
+  }
   .only-mobile {
     display: none;
   }
 }
-
 
 @media (max-width: $width-mob) {
   html {
@@ -986,11 +986,9 @@
     display: none;
   }
 
-
   .about-us-info {
     max-width: 30rem;
   }
-
 
   .tabs-grid {
     display: grid;
@@ -998,10 +996,10 @@
     grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 1rem 2.5rem;
     grid-template-areas:
-"tabs-area1" 
-"tabs-area2"
-"tabs-area3"
-"tabs-area3";
+      "tabs-area1"
+      "tabs-area2"
+      "tabs-area3"
+      "tabs-area3";
   }
 
   .banner-title {
@@ -1019,7 +1017,6 @@
 
   .service-card {
     position: relative;
-
   }
 
   .card-img {
@@ -1033,7 +1030,6 @@
     img {
       display: block;
       max-width: 100%;
-
     }
   }
 
@@ -1042,7 +1038,7 @@
   }
 
   .learn-more {
-    margin-top: .2rem;
+    margin-top: 0.2rem;
     font-size: 1.4rem;
   }
 
@@ -1117,11 +1113,11 @@
     gap: 0.5rem 1rem;
     grid-auto-flow: row;
     grid-template-areas:
-"area1 area2" 
-"area1 area3" 
-"area4 area5" 
-"area4 area6" 
-"area7 area8";
+      "area1 area2"
+      "area1 area3"
+      "area4 area5"
+      "area4 area6"
+      "area7 area8";
   }
 
   .services-tabs {
@@ -1132,16 +1128,8 @@
     padding: 4rem 0;
   }
 
-  .lightbox img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-  }
   .lightbox:target img {
-    border: solid .2rem white;
+    border: solid .2rem #fff;
   }
 
   .light-btn {
@@ -1150,6 +1138,10 @@
 
   .thumb {
     max-height: 21rem;
-    border: solid .6rem white;
+    border: solid 0.6rem white;
+  }
+
+  .modal-content {
+    width: 96%;
   }
 }

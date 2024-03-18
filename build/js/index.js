@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
         index = (index + 1) % reviews.length;
     }
 
-    const interval = setInterval(showNextReview, 4000);
+    const interval = setInterval(showNextReview, 2000);
 });
 
 
